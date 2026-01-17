@@ -2,7 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>Sports TV</title>
 
 <style>
@@ -12,6 +14,8 @@ body{
   background:#0b0b0b;
   color:#fff;
 }
+
+/* ===== Lock Screen ===== */
 #lockScreen{
   position:fixed;
   inset:0;
@@ -21,6 +25,7 @@ body{
   align-items:center;
   z-index:9999;
 }
+
 .lock-box{
   background:#121212;
   padding:25px;
@@ -28,32 +33,70 @@ body{
   border-radius:14px;
   text-align:center;
 }
-.lock-box input,button{
+
+.lock-box input,
+.lock-box button{
   width:100%;
   height:42px;
   border:none;
   border-radius:10px;
   margin-top:10px;
 }
-button{
+
+.lock-box input{
+  padding:0 10px;
+}
+
+.lock-box button{
   background:#c90000;
   color:#fff;
   font-weight:bold;
 }
-#error{color:#ff4d4d;display:none}
+
+/* ===== Telegram Card ===== */
+.telegram-card{
+  margin-top:15px;
+  padding:12px;
+  background:#0f1c24;
+  border:1px solid #0088cc;
+  border-radius:12px;
+  font-size:14px;
+}
+
+.telegram-card a{
+  display:block;
+  margin-top:6px;
+  color:#00aaff;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.telegram-card a:hover{
+  text-decoration:underline;
+}
+
+#error{
+  color:#ff4d4d;
+  display:none;
+  margin-top:10px;
+}
+
 #content{display:none}
 
+/* ===== Header ===== */
 .top-header{
   background:#111;
   padding:14px;
   text-align:center;
   border-bottom:2px solid #b30000;
 }
+
 .title{
   font-size:22px;
   font-weight:bold;
   text-shadow:0 0 6px #b30000;
 }
+
 .visits-box{
   margin-top:8px;
   background:#000;
@@ -63,34 +106,55 @@ button{
   font-weight:bold;
 }
 
+/* ===== Iframe ===== */
 .iframe-wrapper{
   position:relative;
   height:85vh;
 }
+
 .iframe-cover{
   position:absolute;
-  top:0;left:0;
+  top:0;
+  left:0;
   width:100%;
   height:80px;
   background:#0b0b0b;
   z-index:10;
   pointer-events:none;
 }
-iframe{width:100%;height:100%;border:none}
+
+iframe{
+  width:100vw;
+  height:100vh;
+  border:none;
+}
 </style>
 </head>
 
 <body>
 
+<!-- ===== Lock Screen ===== -->
 <div id="lockScreen">
   <div class="lock-box">
     <h3>🔒 أدخل كود الدخول</h3>
+
     <input id="lockCode" placeholder="الكود">
+
     <button onclick="unlock()">دخول</button>
+
+    <!-- Telegram Card -->
+    <div class="telegram-card">
+      انضم لينا على تلجرام ليصلك أكواد مجانية
+      <a href="https://t.me/spoortsTV" target="_blank">
+        🔗 الدخول إلى قناة Telegram
+      </a>
+    </div>
+
     <div id="error">تم إيقاف أو حذف الكود</div>
   </div>
 </div>
 
+<!-- ===== Content ===== -->
 <div id="content">
   <div class="top-header">
     <div class="title">Sports TV</div>
@@ -106,6 +170,7 @@ iframe{width:100%;height:100%;border:none}
   </div>
 </div>
 
+<!-- ===== Firebase ===== -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
